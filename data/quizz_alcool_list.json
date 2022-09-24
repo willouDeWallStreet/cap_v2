@@ -1,0 +1,23 @@
+[
+    {
+        "question": "Quel est l'alcool le plus vendu au monde en 2020 ?",
+        "answerList": [
+            {
+                "answer": "Quentin Tarantino",
+                "onGoodAnswer": true
+            },
+            {
+                "answer": "Martin Scorsese",
+                "onGoodAnswer": false
+            },
+            {
+                "answer": "Clint Eastwood",
+                "onGoodAnswer": false
+            },
+            {
+                "answer": "Robert De Niro",
+                "onGoodAnswer": false
+            }
+        ]
+    }
+]

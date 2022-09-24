@@ -1,0 +1,102 @@
+[
+    {
+        "question": "Quel club de foot anglais joue dans l’enceinte de l’Emirates Stadium ?",
+        "answerList": [
+            {
+                "id": 0,
+                "answer": "Manchester United",
+                "onGoodAnswer": false
+            },
+            {
+                "id": 1,
+                "answer": "Arsenal",
+                "onGoodAnswer": true
+            },
+            {
+                "id": 2,
+                "answer": "Sunderland",
+                "onGoodAnswer": false
+            },
+            {
+                "id": 3,
+                "answer": "Manchester City",
+                "onGoodAnswer": false
+            }
+        ]
+    },
+    {
+        "question": "En quelle année Zinédine Zidane a-t-il pris sa retraite en tant que joueur ?",
+        "answerList": [
+            {
+                "id": 0,
+                "answer": "1999",
+                "onGoodAnswer": false
+            },
+            {
+                "id": 1,
+                "answer": "2002",
+                "onGoodAnswer": false
+            },
+            {
+                "id": 2,
+                "answer": "2006",
+                "onGoodAnswer": true
+            },
+            {
+                "id": 3,
+                "answer": "2008",
+                "onGoodAnswer": false
+            }
+        ]
+    },
+    {
+        "question": "Quelle équipe a gagné l'Euro en 2012 ?",
+        "answerList": [
+            {
+                "id": 0,
+                "answer": "Espagne",
+                "onGoodAnswer": true
+            },
+            {
+                "id": 1,
+                "answer": "Allemagne",
+                "onGoodAnswer": false
+            },
+            {
+                "id": 2,
+                "answer": "Italie",
+                "onGoodAnswer": false
+            },
+            {
+                "id": 3,
+                "answer": "Angleterre",
+                "onGoodAnswer": false
+            }
+        ]
+    },
+    {
+        "question": "Quel footballeur a été élu Ballon d’or 2015 ?",
+        "answerList": [
+            {
+                "id": 0,
+                "answer": "Cristiano Ronaldo",
+                "onGoodAnswer": false
+            },
+            {
+                "id": 1,
+                "answer": "Neymar",
+                "onGoodAnswer": false
+            },
+            {
+                "id": 2,
+                "answer": "Lionel Messi",
+                "onGoodAnswer": true
+            },
+            {
+                "id": 3,
+                "answer": "Thomas Müller",
+                "onGoodAnswer": false
+            }
+        ]
+    }
+]
