@@ -83,6 +83,7 @@ class OleMainPage extends State<OleMainPageCore> {
     });
   }
 
+  //TODO WEV -v2 (2022-09-27-0:35): créé un objet avec libelle, thème et difficulté
   Future<String> loadOleListFromApi() async {
     var oleListJon = await rootBundle.loadString("data/ole_main_people.json");
     oleList = json.decode(oleListJon).cast<String>();
