@@ -12,7 +12,7 @@ class QuizzPageCore extends StatefulWidget {
 
   static const routeName = '/QuizzPageCore';
   final String title;
-  
+
   @override
   QuizzPage createState()  => QuizzPage();
 }
@@ -39,7 +39,7 @@ class QuizzPage extends State<QuizzPageCore> {
   Future<Question> loadQuestionListFromApi() async {
     var questionList = await rootBundle.loadString(getJsonFileNameByThemeId());
         Iterable list = json.decode(questionList);
-        questionAnswersList = list.map((model) => Question.fromJson(model)).toList();        
+        questionAnswersList = list.map((model) => Question.fromJson(model)).toList();
         currentQuestion = questionAnswersList[indexQuestionList];
         if (!indexAlreadyUsedList.contains(indexQuestionList)) {
           indexAlreadyUsedList.add(indexQuestionList);
@@ -63,13 +63,13 @@ class QuizzPage extends State<QuizzPageCore> {
     }
   }
 
-  void pickAnotherQuestion() {
+  void pickAnotherRandomQuestion() {
     setState(() {
       var rng = Random();
       while (indexAlreadyUsedList.contains(indexQuestionList) && questionAnswersList.length > indexAlreadyUsedList.length) {
         indexQuestionList = rng.nextInt(questionAnswersList.length);
       }
-      
+
       if (questionAnswersList.length == indexAlreadyUsedList.length) {
         endGame = true;
       } else {
@@ -92,7 +92,7 @@ class QuizzPage extends State<QuizzPageCore> {
 
   void showHideResponse() { setState(() { showResponse = !showResponse; }); }
 
-  void backToHomePage() { 
+  void backToHomePage() {
     setState(() {
       Navigator.pop(context, true);
     });
@@ -103,7 +103,7 @@ class QuizzPage extends State<QuizzPageCore> {
       return Container();
     } else {
       return FloatingActionButton.extended(
-        onPressed: pickAnotherQuestion,
+        onPressed: pickAnotherRandomQuestion,
         label: const Text('Next question'),
         icon: const Icon(Icons.arrow_forward),
         backgroundColor: Colors.pink,
