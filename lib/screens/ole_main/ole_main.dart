@@ -59,7 +59,7 @@ class OleMainPage extends State<OleMainPageCore> {
           amZBoosted = (counter<10) ? (amZBoosted + amZ * counter * gyroYBoosted) : (amZ * counter);
           print('amZBoosted: $amZBoosted');
           print('gyroYBoosted: $gyroYBoosted');
-          if (amZBoosted > 50) {
+          if (amZBoosted > 80) {
             counter = 0;
             print('\n\n\n');
             print('IT IS A WIIIIIIIN ! ! ! ! ! !');
@@ -67,7 +67,7 @@ class OleMainPage extends State<OleMainPageCore> {
             print('-------------> goodResponseNb: $goodResponseNb');
             pickAnotherRandomQuestion();
             print('\n\n\n');
-          } else if (amZBoosted < -40) {
+          } else if (amZBoosted < -80) {
             counter = 0;
             print('\n\n\n');
             print('IT IS A LOOOOOOOOSE ! ! ! ! ! !');
@@ -85,7 +85,7 @@ class OleMainPage extends State<OleMainPageCore> {
 
   //TODO WEV -v2 (2022-09-27-0:35): créé un objet avec libelle, thème et difficulté
   Future<String> loadOleListFromApi() async {
-    var oleListJon = await rootBundle.loadString("data/ole_main_people.json");
+    var oleListJon = await rootBundle.loadString("data/ole_main_actor.json");
     oleList = json.decode(oleListJon).cast<String>();
     debugPrint('oleList: $oleList');
     currentOle = oleList[currentIndexOleList];
@@ -131,15 +131,16 @@ class OleMainPage extends State<OleMainPageCore> {
   Widget build(BuildContext context) {
     return Scaffold(
       //Here you can set what ever background color you need.
-      backgroundColor: Colors.pink,
+      backgroundColor: Colors.black,
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: Container(
-          height: 600,
-          width: 400,
+      body: /*Container(
+          //TODO WEV -d (2022-09-27-23:0)
+          *//*height: 600,
+          width: 400,*//*
           child: Row(children: [
-            Transform.translate(
+            *//*Transform.translate(
               offset: Offset(gyroY, 0),
               child: Container(
                 child: Center(
@@ -147,13 +148,13 @@ class OleMainPage extends State<OleMainPageCore> {
                     children: [
                       Text("X: ${gyroX}"), Text("Y: ${gyroY}"), Text("Z: ${gyroZ}"),
                       Text("\n\n\n"),
-                      /*Text("amZ: ${amZ}"),*/
+                      *//**//*Text("amZ: ${amZ}"),*//**//*
                       RotatedBox(quarterTurns: 1, child: Text("amZ: ${amZ}", textScaleFactor: 2.25)),
                       ],
                   ),
                 ),
               ),
-            ),
+            ),*//*
             Center(
               child: RotatedBox(quarterTurns: 1, child:
                 CountdownTimer(
@@ -164,17 +165,75 @@ class OleMainPage extends State<OleMainPageCore> {
             ),
             Center(
               child: RotatedBox(quarterTurns: 1, child:
-                FutureBuilder(
-                  future: loadOleListFromApi(), // async work
-                  builder: (context, AsyncSnapshot<String> snapshot) {
-                    return Text(snapshot.data!, textScaleFactor: 2.0, textAlign: TextAlign.center);
-                  },
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    FutureBuilder(
+                      future: loadOleListFromApi(), // async work
+                      builder: (context, AsyncSnapshot<String> snapshot) {
+                        return Text(snapshot.data!, textScaleFactor: 3.0, textAlign: TextAlign.center);
+                      },
+                    )
+                  ],
                 )
-              )
+              ),
+            )
+          ])
+      )*/
+      Align(
+        alignment: Alignment.center,
+        child: RotatedBox(quarterTurns: 1, child:
+          Container(
+            width: 620.0,
+            height: 350.0,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(12),
+              color: const Color(0xff5069aa),
+              border: Border.all(width: 4, color: Colors.white),
             ),
-          ],
+            child: Stack(
+                alignment: AlignmentDirectional.center,
+                children: <Widget>[
+                  FutureBuilder(
+                    future: loadOleListFromApi(), // async work
+                    builder: (context, AsyncSnapshot<String> snapshot) {
+                      return Align(
+                          alignment: Alignment.center,
+                          child: Text(
+                              snapshot.data!,
+                              style: TextStyle(fontSize: 50, fontWeight: FontWeight.bold, color: Colors.white)
+                          )
+                      );
+                    },
+                  ),
+                  Align(
+                    alignment: Alignment.bottomRight,
+                    child:
+                      CountdownTimer(
+                        onEnd: onEnd,
+                        endTime: endTime,
+                      ),
+                    /*Text("35",style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold, color: Colors.white))*/
+                  )
+                ]
+            )
+
+            /*child: FutureBuilder(
+              future: loadOleListFromApi(), // async work
+              builder: (context, AsyncSnapshot<String> snapshot) {
+                return Align(
+                  alignment: Alignment.center,
+                  child: Text(
+                    snapshot.data!,
+                    style: TextStyle(fontSize: 50, fontWeight: FontWeight.bold, color: Colors.white)
+                  )
+                );
+              },
+            ),*/
+          )
         )
-      ),
+      )
     );
   }
 }

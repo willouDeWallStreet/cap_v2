@@ -59,7 +59,8 @@ dev_dependencies:
 flutter:
   assets:
     - data/date_game_list.json
-    - data/ole_main_people.json
+    - data/ole_main_actor.json
+    - data/ole_main_singer.json
     - data/quizz_alcool_list.json
     - data/quizz_cinema_list.json
     - data/quizz_sport_list.json
