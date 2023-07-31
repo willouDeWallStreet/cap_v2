@@ -51,30 +51,47 @@ class OleMainPage extends State<OleMainPageCore> {
         gyroYBoosted = gyroY * 10;
         amZBoosted = amZ * 10;
         //counter = (counter<10) ? counter+1 : 0;
-        print('---> BEFORE 5sec we can\'t play Counter: $counter');
+        //TODO WEV -d (2022-10-1-0:8)
+        /*print('---> BEFORE 5sec we can\'t play Counter: $counter');*/
         if (counter>10) {
-          print('Counter: $counter');
-          print('amZ: $amZ');
+          //TODO WEV -d (2022-10-1-0:6)
+          /*print('Counter: $counter');
+          print('amZ: $amZ');*/
 
           amZBoosted = (counter<10) ? (amZBoosted + amZ * counter * gyroYBoosted) : (amZ * counter);
-          print('amZBoosted: $amZBoosted');
-          print('gyroYBoosted: $gyroYBoosted');
+          //TODO WEV -d (2022-10-1-0:8)
+          /*print('amZBoosted: $amZBoosted');
+          print('gyroYBoosted: $gyroYBoosted');*/
           if (amZBoosted > 80) {
             counter = 0;
-            print('\n\n\n');
-            print('IT IS A WIIIIIIIN ! ! ! ! ! !');
             goodResponseNb++;
             print('-------------> goodResponseNb: $goodResponseNb');
-            pickAnotherRandomQuestion();
-            print('\n\n\n');
+            Future.delayed(const Duration(milliseconds: 1500), () {
+              setState(() {
+                print('\n\n\n');
+                print('IT IS A WIIIIIIIN ! ! ! ! ! !');
+                currentOle = "Correct !";
+                Future.delayed(const Duration(milliseconds: 1500), () {
+                  pickAnotherRandomQuestion();
+                  print('\n\n\n');
+                });
+              });
+            });
           } else if (amZBoosted < -80) {
             counter = 0;
-            print('\n\n\n');
-            print('IT IS A LOOOOOOOOSE ! ! ! ! ! !');
             badResponseNb++;
             print('----> badResponseNb: $badResponseNb');
-            pickAnotherRandomQuestion();
-            print('\n\n\n');
+            Future.delayed(const Duration(milliseconds: 1500), () {
+              setState(() {
+                print('\n\n\n');
+                print('IT IS A LOOOOOOOOSE ! ! ! ! ! !');
+                currentOle = "Passe";
+              });
+              Future.delayed(const Duration(milliseconds: 1500), () {
+                pickAnotherRandomQuestion();
+                print('\n\n\n');
+              });
+            });
           }
         } else {
           counter++;
@@ -98,18 +115,21 @@ class OleMainPage extends State<OleMainPageCore> {
 
   void pickAnotherRandomQuestion() {
     setState(() {
-      print('\n\n\n');
+      //TODO WEV -d (2022-10-1-0:6)
+      /*print('\n\n\n');*/
       var rng = Random();
       //TODO WEV -i (2022-09-26-23:18): improvement: indexAlreadyUsedList -> indexNotAlreadyUsedList et on pick un random index dans cette liste
       while (indexAlreadyUsedList.contains(currentIndexOleList) && oleList.length > indexAlreadyUsedList.length) {
         currentIndexOleList = rng.nextInt(oleList.length);
       }
-      print('currentIndexOleList : $currentIndexOleList');
+      //TODO WEV -d (2022-10-1-0:6)
+      /*print('currentIndexOleList : $currentIndexOleList');
       print('oleList : $oleList');
-      print('indexAlreadyUsedList : $indexAlreadyUsedList');
+      print('indexAlreadyUsedList : $indexAlreadyUsedList');*/
 
       if (oleList.length == indexAlreadyUsedList.length) {
         endGame = true;
+        print('This is the end !!');
       } else {
         currentOle = oleList[currentIndexOleList];
         print('currentIndexOleList: $currentIndexOleList');
